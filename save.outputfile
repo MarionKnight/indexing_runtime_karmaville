@@ -1,0 +1,1138 @@
+=> Booting Thin
+=> Rails 3.2.12 application starting in development on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 10:45:56 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2345.8ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.7ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264254.95..264255.08 rows=50 width=70)
+   ->  Sort  (cost=264254.95..264504.95 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222086.27..260933.03 rows=100000 width=70)
+               ->  Merge Join  (cost=222086.27..252432.59 rows=1500088 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222085.53..229585.97 rows=1500088 width=8)
+                           ->  Sort  (cost=222085.53..225835.75 rows=1500088 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.88 rows=1500088 width=8)
+(11 rows)
+
+  [1m[36m (173.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (211.8ms)
+  [1m[35m (177.3ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (178.5ms)
+  [1m[36m (178.9ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (180.2ms)
+  [1m[35m (173.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (175.0ms)
+  [1m[36m (171.2ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (172.3ms)
+  [1m[35m (171.3ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (172.6ms)
+  [1m[36m (170.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (171.6ms)
+  [1m[35m (171.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (172.9ms)
+  [1m[36m (171.7ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (173.0ms)
+  [1m[35m (178.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (179.7ms)
+  [1m[36m (170.9ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (172.0ms)
+  [1m[35m (170.7ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (171.7ms)
+  [1m[36m (172.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (173.6ms)
+  [1m[35m (189.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (190.6ms)
+  [1m[36m (177.8ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (179.1ms)
+  [1m[35m (181.1ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (182.2ms)
+  [1m[36m (176.2ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (177.5ms)
+  [1m[35m (172.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (173.6ms)
+  [1m[36m (175.2ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (176.2ms)
+  [1m[35m (171.8ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (172.8ms)
+  [1m[36m (173.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (174.6ms)
+  [1m[35m (174.3ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (175.6ms)
+  [1m[36m (171.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (172.4ms)
+  [1m[35m (170.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (171.9ms)
+  [1m[36m (179.7ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (181.0ms)
+  [1m[35m (170.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (172.1ms)
+  [1m[36m (201.1ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (202.4ms)
+  [1m[35m (176.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (177.7ms)
+  [1m[36m (170.9ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (172.2ms)
+  [1m[35m (178.7ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (179.9ms)
+  [1m[36m (183.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (184.6ms)
+  [1m[35m (176.1ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (177.4ms)
+  [1m[36m (172.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (173.9ms)
+  [1m[35m (173.2ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (174.4ms)
+  [1m[36m (170.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (171.6ms)
+  [1m[35m (175.1ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (176.4ms)
+  [1m[36m (173.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (174.9ms)
+  [1m[35m (171.2ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (172.4ms)
+  [1m[36m (177.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (178.8ms)
+  [1m[35m (175.8ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (177.1ms)
+  [1m[36m (170.8ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (172.0ms)
+  [1m[35m (176.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (177.4ms)
+  [1m[36m (176.7ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (178.0ms)
+  [1m[35m (171.3ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (172.5ms)
+  [1m[36m (174.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (175.5ms)
+  [1m[35m (171.7ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (173.0ms)
+  [1m[36m (174.2ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (175.5ms)
+  [1m[35m (171.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (172.9ms)
+  [1m[36m (172.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (173.7ms)
+  [1m[35m (173.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (174.9ms)
+  Rendered users/index.html.erb within layouts/application (11269.8ms)
+Completed 200 OK in 11364ms (Views: 246.4ms | ActiveRecord: 11103.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 11:51:41 -0800
+Processing by UsersController#index as HTML
+Completed 500 Internal Server Error in 3ms
+
+NoMethodError (undefined method `by_karma' for #<Class:0x007ffa242c8f28>):
+  app/controllers/users_controller.rb:3:in `index'
+
+
+  Rendered /Users/Apprentice/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.5ms)
+  Rendered /Users/Apprentice/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/Apprentice/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 11:52:02 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2394.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.7ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264254.95..264255.08 rows=50 width=70)
+   ->  Sort  (cost=264254.95..264504.95 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222086.27..260933.03 rows=100000 width=70)
+               ->  Merge Join  (cost=222086.27..252432.59 rows=1500088 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222085.53..229585.97 rows=1500088 width=8)
+                           ->  Sort  (cost=222085.53..225835.75 rows=1500088 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.88 rows=1500088 width=8)
+(11 rows)
+
+  Rendered users/_user_row.html.erb (63.4ms)
+  Rendered users/index.html.erb within layouts/application (2477.7ms)
+Completed 500 Internal Server Error in 2496ms
+
+ActionView::Template::Error (undefined method `total_karma' for #<User:0x007ffa21b360a0>):
+    1: <tr>
+    2:   <td><i class="icon-star"></i> <%= number_with_delimiter(user.total_karma) %></td>
+    3:   <td><%= user.full_name %></td>
+    4:   <td><%= user.username %></td>
+    5:   <td><%= mail_to user.email, user.email %></td>
+  app/views/users/_user_row.html.erb:2:in `_app_views_users__user_row_html_erb___2995379354193903265_70356147840600'
+  app/views/users/index.html.erb:10:in `block in _app_views_users_index_html_erb__3365391795762198589_70356147291780'
+  app/views/users/index.html.erb:9:in `_app_views_users_index_html_erb__3365391795762198589_70356147291780'
+
+
+  Rendered /Users/Apprentice/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (21.5ms)
+  Rendered /Users/Apprentice/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/Apprentice/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (27.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 11:52:55 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2287.0ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.7ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264254.95..264255.08 rows=50 width=70)
+   ->  Sort  (cost=264254.95..264504.95 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222086.27..260933.03 rows=100000 width=70)
+               ->  Merge Join  (cost=222086.27..252432.59 rows=1500088 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222085.53..229585.97 rows=1500088 width=8)
+                           ->  Sort  (cost=222085.53..225835.75 rows=1500088 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.88 rows=1500088 width=8)
+(11 rows)
+
+  [1m[36m (177.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (180.4ms)
+  [1m[35m (172.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (173.8ms)
+  [1m[36m (176.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (177.8ms)
+  [1m[35m (176.7ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (177.9ms)
+  [1m[36m (171.1ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (172.4ms)
+  [1m[35m (171.2ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (172.5ms)
+  [1m[36m (178.2ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (179.6ms)
+  [1m[35m (173.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (174.2ms)
+  [1m[36m (170.9ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (172.1ms)
+  [1m[35m (174.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (175.1ms)
+  [1m[36m (172.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (173.6ms)
+  [1m[35m (173.3ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (174.6ms)
+  [1m[36m (175.0ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (176.3ms)
+  [1m[35m (170.8ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (172.1ms)
+  [1m[36m (175.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (176.6ms)
+  [1m[35m (176.3ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (177.5ms)
+  [1m[36m (170.8ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (172.1ms)
+  [1m[35m (171.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (172.3ms)
+  [1m[36m (170.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (171.7ms)
+  [1m[35m (170.3ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (171.5ms)
+  [1m[36m (174.0ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (175.1ms)
+  [1m[35m (171.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (172.0ms)
+  [1m[36m (174.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (175.7ms)
+  [1m[35m (170.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (172.0ms)
+  [1m[36m (176.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (177.8ms)
+  [1m[35m (172.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (173.2ms)
+  [1m[36m (183.8ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (185.0ms)
+  [1m[35m (178.7ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (179.9ms)
+  [1m[36m (174.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (175.4ms)
+  [1m[35m (171.2ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (172.2ms)
+  [1m[36m (173.7ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (175.1ms)
+  [1m[35m (171.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (173.4ms)
+  [1m[36m (170.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (171.9ms)
+  [1m[35m (175.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (176.3ms)
+  [1m[36m (170.8ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (172.1ms)
+  [1m[35m (176.1ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (177.4ms)
+  [1m[36m (174.0ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (175.2ms)
+  [1m[35m (170.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (172.1ms)
+  [1m[36m (176.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (178.0ms)
+  [1m[35m (173.7ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (174.9ms)
+  [1m[36m (172.1ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (173.4ms)
+  [1m[35m (171.2ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (172.5ms)
+  [1m[36m (175.9ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (177.1ms)
+  [1m[35m (176.9ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (178.0ms)
+  [1m[36m (171.1ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (172.4ms)
+  [1m[35m (173.1ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (174.2ms)
+  [1m[36m (198.3ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (199.5ms)
+  [1m[35m (179.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (180.9ms)
+  [1m[36m (174.2ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (175.4ms)
+  [1m[35m (181.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (182.7ms)
+  Rendered users/index.html.erb within layouts/application (11126.3ms)
+Completed 200 OK in 11139ms (Views: 124.2ms | ActiveRecord: 11013.9ms)
+Connecting to database specified by database.yml
+  [1m[36m (20.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddIndexToKarmaPointsTable (20131125195816)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2273.2ms)[0m  [1mCREATE INDEX "index_karma_points_on_user_id" ON "karma_points" ("user_id")[0m
+  [1m[35m (2417.5ms)[0m  CREATE INDEX "index_karma_points_on_value" ON "karma_points" ("value" DESC)
+  [1m[36m (12.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20131125195816')[0m
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddIndexToKarmaPointsTable (20131125195816)
+Migrating to AddMoreIndex (20131125200315)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (88.8ms)[0m  [1mCREATE UNIQUE INDEX "index_karma_points_on_user_id_and_value" ON "karma_points" ("user_id", "value" DESC)[0m
+PG::Error: ERROR:  could not create unique index "index_karma_points_on_user_id_and_value"
+DETAIL:  Key (user_id, value)=(1006, 730) is duplicated.
+: CREATE UNIQUE INDEX "index_karma_points_on_user_id_and_value" ON "karma_points" ("user_id", "value" DESC)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddMoreIndex (20131125200315)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (96.9ms)[0m  [1mCREATE UNIQUE INDEX "index_karma_points_on_user_id_and_value" ON "karma_points" ("user_id", "value" DESC)[0m
+PG::Error: ERROR:  could not create unique index "index_karma_points_on_user_id_and_value"
+DETAIL:  Key (user_id, value)=(1, 1) is duplicated.
+: CREATE UNIQUE INDEX "index_karma_points_on_user_id_and_value" ON "karma_points" ("user_id", "value" DESC)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddMoreIndex (20131125200315)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2522.7ms)[0m  [1mCREATE INDEX "index_karma_points_on_user_id_and_value" ON "karma_points" ("user_id", "value" DESC)[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20131125200315')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 12:07:19 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2311.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.8ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264242.80..264242.93 rows=50 width=70)
+   ->  Sort  (cost=264242.80..264492.80 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222075.42..260920.87 rows=100000 width=70)
+               ->  Merge Join  (cost=222075.42..252420.87 rows=1500000 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222074.98..229574.98 rows=1500000 width=8)
+                           ->  Sort  (cost=222074.98..225824.98 rows=1500000 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.00 rows=1500000 width=8)
+(11 rows)
+
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (2.7ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (0.9ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (1.5ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (1.0ms)
+  Rendered users/index.html.erb within layouts/application (2406.3ms)
+Completed 200 OK in 2415ms (Views: 76.3ms | ActiveRecord: 2338.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 12:07:33 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2388.2ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.8ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264242.80..264242.93 rows=50 width=70)
+   ->  Sort  (cost=264242.80..264492.80 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222075.42..260920.87 rows=100000 width=70)
+               ->  Merge Join  (cost=222075.42..252420.87 rows=1500000 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222074.98..229574.98 rows=1500000 width=8)
+                           ->  Sort  (cost=222074.98..225824.98 rows=1500000 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.00 rows=1500000 width=8)
+(11 rows)
+
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (1.7ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.7ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.7ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (2.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (1.0ms)
+  Rendered users/index.html.erb within layouts/application (2472.7ms)
+Completed 200 OK in 2481ms (Views: 68.9ms | ActiveRecord: 2412.0ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddMoreIndex (20131125200315)
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 12:12:48 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2330.8ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.8ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264242.80..264242.93 rows=50 width=70)
+   ->  Sort  (cost=264242.80..264492.80 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222075.42..260920.87 rows=100000 width=70)
+               ->  Merge Join  (cost=222075.42..252420.87 rows=1500000 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222074.98..229574.98 rows=1500000 width=8)
+                           ->  Sort  (cost=222074.98..225824.98 rows=1500000 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.00 rows=1500000 width=8)
+(11 rows)
+
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (2.7ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.8ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (1.6ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (1.5ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (1.8ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (0.9ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (1.0ms)
+  Rendered users/index.html.erb within layouts/application (2427.0ms)
+Completed 200 OK in 2436ms (Views: 75.8ms | ActiveRecord: 2359.5ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddIndexToKarmaPointsTable (20131125195816)
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 12:13:51 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2315.7ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.8ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264242.80..264242.93 rows=50 width=70)
+   ->  Sort  (cost=264242.80..264492.80 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222075.42..260920.87 rows=100000 width=70)
+               ->  Merge Join  (cost=222075.42..252420.87 rows=1500000 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222074.98..229574.98 rows=1500000 width=8)
+                           ->  Sort  (cost=222074.98..225824.98 rows=1500000 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.00 rows=1500000 width=8)
+(11 rows)
+
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (3.3ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.7ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.7ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.8ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (1.1ms)
+  Rendered users/index.html.erb within layouts/application (2414.9ms)
+Completed 200 OK in 2449ms (Views: 102.8ms | ActiveRecord: 2345.2ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddIndexToKarmaPointsTable (20131125195816)
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 12:14:55 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2345.7ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.8ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264242.80..264242.93 rows=50 width=70)
+   ->  Sort  (cost=264242.80..264492.80 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222075.42..260920.87 rows=100000 width=70)
+               ->  Merge Join  (cost=222075.42..252420.87 rows=1500000 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222074.98..229574.98 rows=1500000 width=8)
+                           ->  Sort  (cost=222074.98..225824.98 rows=1500000 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.00 rows=1500000 width=8)
+(11 rows)
+
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (2.8ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (1.0ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (2.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.8ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (1.5ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (0.9ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (1.0ms)
+  Rendered users/index.html.erb within layouts/application (2467.2ms)
+Completed 200 OK in 2476ms (Views: 101.6ms | ActiveRecord: 2373.5ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddIndexToKarmaPointsTable (20131125195816)
+Migrating to AddMoreIndex (20131125200315)
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20130317220750)
+Migrating to CreateKarmaPoints (20130317221018)
+Migrating to AddMoreIndex (20131125200315)
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 12:32:46 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2355.8ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50[0m
+  [1m[35mEXPLAIN (0.8ms)[0m  EXPLAIN SELECT "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+EXPLAIN for: SELECT  "users".* FROM "users" INNER JOIN "karma_points" ON "karma_points"."user_id" = "users"."id" GROUP BY users.id ORDER BY SUM(karma_points.value) DESC LIMIT 50
+                                                QUERY PLAN
+----------------------------------------------------------------------------------------------------------
+ Limit  (cost=264242.80..264242.93 rows=50 width=70)
+   ->  Sort  (cost=264242.80..264492.80 rows=100000 width=70)
+         Sort Key: (sum(karma_points.value))
+         ->  GroupAggregate  (cost=222075.42..260920.87 rows=100000 width=70)
+               ->  Merge Join  (cost=222075.42..252420.87 rows=1500000 width=70)
+                     Merge Cond: (users.id = karma_points.user_id)
+                     ->  Index Scan using users_pkey on users  (cost=0.00..3846.26 rows=100000 width=66)
+                     ->  Materialize  (cost=222074.98..229574.98 rows=1500000 width=8)
+                           ->  Sort  (cost=222074.98..225824.98 rows=1500000 width=8)
+                                 Sort Key: karma_points.user_id
+                                 ->  Seq Scan on karma_points  (cost=0.00..27181.00 rows=1500000 width=8)
+(11 rows)
+
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92951[0m
+  Rendered users/_user_row.html.erb (3.3ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97040
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90170[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97972
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99461[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96852
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88777[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95930
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 75544[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98345
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96136[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88941
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93715[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.6ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92462
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97094[0m
+  Rendered users/_user_row.html.erb (1.5ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97075
+  Rendered users/_user_row.html.erb (1.4ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97751[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96285
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96631[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 88469
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99326[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97829
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93403[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.5ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99597
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 85048[0m
+  Rendered users/_user_row.html.erb (1.3ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 97805
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90509[0m
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 90645
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 86205[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 81707
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 84462[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98220
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 93303[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98778
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 83598[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 87056
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 95969[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92315
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 92480[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98386
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96664[0m
+  Rendered users/_user_row.html.erb (1.2ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 94593
+  Rendered users/_user_row.html.erb (1.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98565[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 89355
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98979[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 82152
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96398[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.4ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 96217
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 99256[0m
+  Rendered users/_user_row.html.erb (1.0ms)
+  [1m[35m (0.8ms)[0m  SELECT SUM("karma_points"."value") AS sum_id FROM "karma_points" WHERE "karma_points"."user_id" = 98931
+  Rendered users/_user_row.html.erb (1.4ms)
+  Rendered users/index.html.erb within layouts/application (2451.3ms)
+Completed 200 OK in 2461ms (Views: 76.4ms | ActiveRecord: 2383.5ms)
+>> Stopping ...
+Exiting
